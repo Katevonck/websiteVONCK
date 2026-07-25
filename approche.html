@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon approche — Katelyne Vonck Kinésiologie</title>
+  <meta name="description" content="Découvrez l'approche de Katelyne Vonck : Touch for Health, déroulement d'une séance, méthodes utilisées." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Page-specific styles ── */
+    .page-hero {
+      background: linear-gradient(135deg, #3d6b52 0%, #5b8a6e 40%, #7aab8a 100%);
+      padding: 140px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(255,255,255,.06) 0%, transparent 60%);
+    }
+    .page-hero-content { position: relative; z-index: 1; }
+    .page-hero .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,.75);
+      font-size: .85rem;
+      margin-bottom: 24px;
+      transition: color var(--transition);
+    }
+    .page-hero .back-link:hover { color: var(--white); }
+    .page-hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .page-hero h1 em { font-style: italic; font-weight: 400; }
+    .page-hero p {
+      color: rgba(255,255,255,.82);
+      font-size: 1.1rem;
+      max-width: 560px;
+      margin: 0 auto;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .approche-content {
+      padding: 80px 0 100px;
+    }
+
+    /* Intro citation */
+    .citation {
+      max-width: 720px;
+      margin: 0 auto 80px;
+      text-align: center;
+      padding: 40px;
+      background: var(--green-light);
+      border-radius: var(--radius-lg);
+      border-left: 4px solid var(--green);
+    }
+    .citation p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--green-dark);
+      line-height: 1.6;
+    }
+    .citation span {
+      display: block;
+      margin-top: 12px;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    /* Illustration séance */
+    .seance-illustration {
+      max-width: 700px;
+      margin: 0 auto 80px;
+      text-align: center;
+    }
+    .seance-illustration svg {
+      width: 100%;
+      height: auto;
+      background: var(--green-light);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+    }
+    .illustration-caption {
+      margin-top: 14px;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    /* Blocs approche */
+    .approche-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      margin-bottom: 100px;
+    }
+    .approche-block.reverse { direction: rtl; }
+    .approche-block.reverse > * { direction: ltr; }
+
+    .approche-visual {
+      background: var(--green-light);
+      border-radius: var(--radius-lg);
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .approche-visual svg { width: 45%; opacity: .6; }
+    .approche-visual .visual-label {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(8px);
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--green-dark);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .approche-text .section-tag { margin-bottom: 8px; }
+    .approche-text h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    .approche-text p {
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      font-size: .97rem;
+      line-height: 1.75;
+    }
+    .approche-text ul {
+      margin: 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .approche-text ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .9rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .approche-text ul li::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    /* Déroulement séance */
+    .seance-section {
+      background: var(--beige);
+      padding: 80px 0;
+      margin-bottom: 80px;
+      border-radius: var(--radius-lg);
+    }
+    .seance-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .seance-step {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      position: relative;
+      border-top: 3px solid var(--green);
+    }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--green-mid);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .seance-step h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .seance-step p {
+      font-size: .85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Outils */
+    .outils-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .outil-card {
+      background: var(--white);
+      border: 1px solid var(--beige-dark);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: var(--transition);
+    }
+    .outil-card:hover {
+      border-color: var(--green-mid);
+      box-shadow: var(--shadow);
+      transform: translateY(-3px);
+    }
+    .outil-card h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--green-dark);
+      margin-bottom: 8px;
+    }
+    .outil-card p {
+      font-size: .85rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .outil-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--green-light);
+      margin-bottom: 10px;
+    }
+
+    /* CTA final */
+    .approche-cta {
+      background: linear-gradient(135deg, #3d6b52, #6b9e7a);
+      border-radius: var(--radius-lg);
+      padding: 64px 48px;
+      text-align: center;
+      color: var(--white);
+    }
+    .approche-cta h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 400;
+      margin-bottom: 16px;
+      color: var(--white);
+    }
+    .approche-cta p {
+      color: rgba(255,255,255,.82);
+      max-width: 500px;
+      margin: 0 auto 32px;
+      font-size: 1rem;
+    }
+    .approche-cta .btn-primary {
+      background: var(--white);
+      color: var(--green-dark);
+      font-weight: 600;
+    }
+    .approche-cta .btn-primary:hover {
+      background: var(--green-light);
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+    }
+
+    @media (max-width: 900px) {
+      .approche-block,
+      .approche-block.reverse { grid-template-columns: 1fr; direction: ltr; }
+      .seance-steps { grid-template-columns: repeat(2, 1fr); }
+      .outils-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .seance-steps,
+      .outils-grid { grid-template-columns: 1fr; }
+      .approche-cta { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <header class="header scrolled" id="header">
+    <nav class="nav container">
+      <a href="index.html" class="nav-logo" style="color: var(--text)">Katelyne Vonck</a>
+      <button class="nav-burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#accueil" class="nav-link">Accueil</a></li>
+        <li><a href="index.html#a-propos" class="nav-link">À propos</a></li>
+        <li><a href="index.html#services" class="nav-link">Séances</a></li>
+        <li><a href="index.html#rdv" class="nav-link nav-cta">Prendre rendez-vous</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <div class="page-hero">
+      <div class="page-hero-content container">
+        <a href="index.html" class="back-link">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Retour au site
+        </a>
+        <h1>Mon <em>approche</em></h1>
+        <p>La kinésiologie telle que je la pratique : des outils concrets, une écoute profonde, et un accompagnement sur mesure pour vous redonner accès à vos ressources.</p>
+      </div>
+    </div>
+
+    <div class="approche-content">
+      <div class="container">
+
+        <!-- Illustration séance -->
+        <div class="seance-illustration reveal">
+          <svg viewBox="0 0 700 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Illustration d'une séance de kinésiologie">
+
+            <!-- Table de soin -->
+            <rect x="80" y="210" width="480" height="18" rx="9" fill="#c8d9c9"/>
+            <rect x="110" y="228" width="16" height="60" rx="8" fill="#b0c9b2"/>
+            <rect x="514" y="228" width="16" height="60" rx="8" fill="#b0c9b2"/>
+            <rect x="150" y="228" width="16" height="50" rx="8" fill="#b0c9b2"/>
+            <rect x="474" y="228" width="16" height="50" rx="8" fill="#b0c9b2"/>
+
+            <!-- Matelas -->
+            <rect x="82" y="196" width="476" height="20" rx="10" fill="#eaf3eb"/>
+            <rect x="84" y="198" width="472" height="16" rx="8" fill="#f0f7f1"/>
+
+            <!-- Oreiller -->
+            <ellipse cx="510" cy="200" rx="48" ry="14" fill="#d4e8d6"/>
+
+            <!-- PATIENT allongé -->
+            <!-- Corps -->
+            <rect x="140" y="175" width="310" height="28" rx="14" fill="#6b9e7a"/>
+            <!-- Jambes -->
+            <rect x="140" y="185" width="60" height="18" rx="9" fill="#5b8a6e"/>
+            <!-- Bras le long du corps -->
+            <path d="M200 182 Q230 170 270 178" stroke="#5b8a6e" stroke-width="10" stroke-linecap="round" fill="none"/>
+            <!-- Tête -->
+            <ellipse cx="490" cy="185" rx="26" ry="22" fill="#6b9e7a"/>
+            <!-- Visage patient (profil) -->
+            <ellipse cx="500" cy="182" rx="5" ry="4" fill="#4a7a5a" opacity="0.4"/>
+            <!-- Cheveux patient -->
+            <path d="M468 172 Q485 158 508 165 Q520 168 516 175" stroke="#4a7a5a" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.6"/>
+
+            <!-- PRATICIENNE debout -->
+            <!-- Jambes -->
+            <path d="M308 290 L316 228" stroke="#3d7a52" stroke-width="14" stroke-linecap="round"/>
+            <path d="M340 290 L332 228" stroke="#3d7a52" stroke-width="14" stroke-linecap="round"/>
+            <!-- Pieds -->
+            <ellipse cx="308" cy="293" rx="14" ry="7" fill="#3d7a52"/>
+            <ellipse cx="340" cy="293" rx="14" ry="7" fill="#3d7a52"/>
+            <!-- Corps -->
+            <path d="M296 228 Q324 218 352 228 L348 175 Q324 165 300 175 Z" fill="#4d8f63"/>
+            <!-- Tête -->
+            <ellipse cx="324" cy="152" rx="24" ry="26" fill="#4d8f63"/>
+            <!-- Cheveux praticienne (courts) -->
+            <path d="M302 140 Q312 125 324 128 Q336 125 346 140" stroke="#3d7a52" stroke-width="6" stroke-linecap="round" fill="none"/>
+            <!-- Cou -->
+            <rect x="316" y="174" width="16" height="14" rx="7" fill="#4d8f63"/>
+            <!-- Bras gauche vers le patient -->
+            <path d="M300 195 Q280 192 250 188 Q230 186 215 185" stroke="#3d7a52" stroke-width="12" stroke-linecap="round" fill="none"/>
+            <!-- Main gauche -->
+            <ellipse cx="212" cy="185" rx="12" ry="8" fill="#3d7a52"/>
+            <!-- Bras droit -->
+            <path d="M348 195 Q370 190 390 182 Q405 178 415 178" stroke="#3d7a52" stroke-width="12" stroke-linecap="round" fill="none"/>
+            <!-- Main droite -->
+            <ellipse cx="418" cy="178" rx="12" ry="8" fill="#3d7a52"/>
+
+            <!-- Lignes d'énergie / flux -->
+            <path d="M212 185 Q280 160 350 170 Q400 177 418 178" stroke="#a8cdb0" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.6"/>
+            <path d="M215 180 Q290 150 360 162 Q400 170 415 172" stroke="#a8cdb0" stroke-width="1" stroke-dasharray="3 5" opacity="0.4"/>
+
+            <!-- Points d'énergie subtils -->
+            <circle cx="250" cy="182" r="3" fill="#6b9e7a" opacity="0.5"/>
+            <circle cx="320" cy="172" r="3" fill="#6b9e7a" opacity="0.5"/>
+            <circle cx="385" cy="176" r="3" fill="#6b9e7a" opacity="0.5"/>
+
+          </svg>
+          <p class="illustration-caption">Test musculaire — au cœur de chaque séance</p>
+        </div>
+
+        <!-- Touch for Health -->
+        <div class="approche-block reveal">
+          <div class="approche-visual">
+            <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="60" cy="60" r="50" stroke="#6b9e7a" stroke-width="2"/>
+              <circle cx="60" cy="60" r="30" stroke="#6b9e7a" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <path d="M60 20 C60 20 80 40 80 60 C80 80 60 100 60 100 C60 100 40 80 40 60 C40 40 60 20 60 20Z" stroke="#6b9e7a" stroke-width="1.5" fill="none"/>
+              <line x1="10" y1="60" x2="110" y2="60" stroke="#6b9e7a" stroke-width="1.5"/>
+              <line x1="60" y1="10" x2="60" y2="110" stroke="#6b9e7a" stroke-width="1.5"/>
+            </svg>
+            <span class="visual-label">Touch for Health — John Thie</span>
+          </div>
+          <div class="approche-text">
+            <span class="section-tag">La base de ma pratique</span>
+            <h2>Le Touch for Health</h2>
+            <p>Le Touch for Health est un système de rééquilibrage énergétique développé par le Dr John Thie dans les années 1970. Il s'appuie sur les principes de la médecine traditionnelle chinoise — notamment les méridiens d'acupuncture — combinés avec la kinésiologie appliquée.</p>
+            <p>Au cœur de cette approche : le <strong>test musculaire</strong>. En testant la réponse d'un muscle, je peux identifier quels circuits énergétiques sont affaiblis et agir dessus par des techniques douces et précises.</p>
+            <ul>
+              <li>Test musculaire manuel comme outil de dialogue avec le corps</li>
+              <li>Rééquilibrage des méridiens d'acupuncture sans aiguille</li>
+              <li>Points de massage neuro-lymphatique et neuro-vasculaire</li>
+              <li>Travail sur les émotions associées aux déséquilibres physiques</li>
+              <li>Approche validée et enseignée dans plus de 100 pays</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Ce qu'est la kinésiologie -->
+        <div class="approche-block reverse reveal">
+          <div class="approche-visual">
+            <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M30 90 C30 65 50 40 60 30 C70 40 90 65 90 90" stroke="#6b9e7a" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <circle cx="60" cy="26" r="8" stroke="#6b9e7a" stroke-width="2" fill="none"/>
+              <path d="M45 70 Q60 55 75 70" stroke="#6b9e7a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              <path d="M38 80 Q60 62 82 80" stroke="#6b9e7a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            </svg>
+            <span class="visual-label">Vision holistique corps-esprit</span>
+          </div>
+          <div class="approche-text">
+            <span class="section-tag">La philosophie</span>
+            <h2>Une vision globale de l'être</h2>
+            <p>La kinésiologie part d'un postulat fondamental : le corps, l'esprit et les émotions forment un tout indissociable. Un stress émotionnel peut se manifester physiquement, une tension musculaire peut bloquer une pensée, un schéma mental peut entretenir une douleur chronique.</p>
+            <p>Mon travail consiste à identifier ces liens et à les dénouer. Je ne traite pas un symptôme isolé — je cherche avec vous la cause sous-jacente du déséquilibre pour y répondre à sa source.</p>
+            <ul>
+              <li>Prise en charge globale : corps, émotions, mental, énergie</li>
+              <li>Respect du rythme et des ressources de chaque personne</li>
+              <li>Travail collaboratif : vous restez acteur de votre mieux-être</li>
+              <li>Complémentaire à tout suivi médical ou thérapeutique</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Déroulement d'une séance -->
+        <div class="seance-section reveal">
+          <div class="container">
+            <div class="section-header">
+              <span class="section-tag">Concrètement</span>
+              <h2 class="section-title">Comment se déroule une séance ?</h2>
+              <p class="section-desc">Chaque séance est unique et s'adapte à ce qui est présent pour vous ce jour-là.</p>
+            </div>
+            <div class="seance-steps">
+              <div class="seance-step">
+                <div class="step-num">01</div>
+                <h4>L'accueil & l'intention</h4>
+                <p>On commence par un temps d'échange pour définir ensemble ce sur quoi vous souhaitez travailler : une douleur, une émotion, un objectif, une situation bloquée.</p>
+              </div>
+              <div class="seance-step">
+                <div class="step-num">02</div>
+                <h4>Le bilan musculaire</h4>
+                <p>Via des tests musculaires doux, je détermine quels déséquilibres énergétiques, émotionnels ou structurels sont actifs dans votre corps à ce moment précis.</p>
+              </div>
+              <div class="seance-step">
+                <div class="step-num">03</div>
+                <h4>Les corrections</h4>
+                <p>J'applique les techniques adaptées à ce qui a été identifié : massages de points réflexes, acupressure, mouvements, visualisations, ou encore travail sur les croyances.</p>
+              </div>
+              <div class="seance-step">
+                <div class="step-num">04</div>
+                <h4>L'intégration</h4>
+                <p>On termine par un temps de retour au calme et d'échange. Je vous donne également des pistes à explorer chez vous pour prolonger le travail de la séance.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Autres outils -->
+        <div class="reveal">
+          <div class="section-header">
+            <span class="section-tag">La boîte à outils</span>
+            <h2 class="section-title">Les autres approches que j'intègre</h2>
+            <p class="section-desc">En fonction de vos besoins, j'associe différentes techniques complémentaires.</p>
+          </div>
+          <div class="outils-grid">
+            <div class="outil-card">
+              <div class="outil-num">01</div>
+              <h4>LEAP / Intégration cérébrale</h4>
+              <p>Le Learning Enhancement Acupressure Program travaille sur la latéralisation du cerveau et améliore les apprentissages, la concentration et la coordination. Particulièrement efficace chez les enfants.</p>
+            </div>
+            <div class="outil-card">
+              <div class="outil-num">02</div>
+              <h4>Gestion des émotions (ESR)</h4>
+              <p>L'Emotional Stress Release est une technique douce qui consiste à tenir des points frontaux pour permettre au cerveau de retraiter des situations stressantes sans les revivre émotionnellement.</p>
+            </div>
+            <div class="outil-card">
+              <div class="outil-num">03</div>
+              <h4>Sabotages & croyances limitantes</h4>
+              <p>Certains blocages sont liés à des croyances inconscientes. On identifie ensemble ces "saboteurs invisibles" pour les transformer en ressources et débloquer vos projets de vie.</p>
+            </div>
+            <div class="outil-card">
+              <div class="outil-num">04</div>
+              <h4>Kinésiologie & nutrition</h4>
+              <p>Le test musculaire peut aussi explorer les intolérances alimentaires et les carences nutritionnelles qui impactent votre vitalité et votre équilibre émotionnel.</p>
+            </div>
+            <div class="outil-card">
+              <div class="outil-num">05</div>
+              <h4>Travail postural & structurel</h4>
+              <p>En lien avec les muscles et les fascias, je travaille les déséquilibres posturaux et les douleurs chroniques en identifiant les muscles inhibés qui en sont souvent à l'origine.</p>
+            </div>
+            <div class="outil-card">
+              <div class="outil-num">06</div>
+              <h4>Visualisation & ancrage</h4>
+              <p>Des techniques mentales et sensorielles pour ancrer les changements dans votre quotidien, renforcer votre confiance et vous connecter à vos ressources intérieures.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="approche-cta reveal" style="margin-top: 80px;">
+          <h2>Prête à commencer ?</h2>
+          <p>Une première séance de bilan suffit pour comprendre ce dont vous avez besoin et tracer ensemble votre chemin vers le mieux-être.</p>
+          <a href="index.html#rdv" class="btn btn-primary">Prendre rendez-vous</a>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER simplifié -->
+  <footer class="footer" id="contact">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <p class="footer-logo">Katelyne Vonck</p>
+        <p class="footer-tagline">Kinésiologue certifiée</p>
+        <p>Accompagnement holistique pour retrouver l'équilibre et le bien-être au quotidien.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/katelynevonckkinesio/?locale=fr_FR" target="_blank" rel="noopener" aria-label="Facebook" class="social-link">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="index.html#a-propos">À propos</a></li>
+          <li><a href="index.html#services">Séances</a></li>
+          <li><a href="index.html#rdv">Rendez-vous</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <ul>
+          <li>94 rue Monin<br/>6061 Montignies-sur-Sambre, Belgique</li>
+          <li><a href="tel:+32478613975">+32 478 61 39 75</a></li>
+          <li><a href="mailto:kate.vonck@gmail.be">kate.vonck@gmail.be</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>© 2026 Katelyne Vonck — Kinésiologue. Tous droits réservés.</p>
+      <p><a href="#">Mentions légales</a> · <a href="#">Politique de confidentialité</a></p>
+    </div>
+  </footer>
+
+  <a href="index.html#rdv" class="fab" aria-label="Prendre rendez-vous">
+    <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><rect x="3" y="4" width="18" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+  </a>
+
+  <script>
+    const burger = document.getElementById('burger');
+    const navLinks = document.getElementById('navLinks');
+    burger.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    navLinks.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      document.body.style.overflow = '';
+    }));
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    revealEls.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>

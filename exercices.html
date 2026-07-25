@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exercices à la maison — Katelyne Vonck Kinésiologie</title>
+  <meta name="description" content="4 exercices de kinésiologie faciles à faire chez soi pour prolonger les effets de vos séances." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero {
+      background: linear-gradient(135deg, #3d6b52 0%, #5b8a6e 40%, #7aab8a 100%);
+      padding: 140px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(255,255,255,.06) 0%, transparent 60%);
+    }
+    .page-hero-content { position: relative; z-index: 1; }
+    .page-hero .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,.75);
+      font-size: .85rem;
+      margin-bottom: 24px;
+      transition: color var(--transition);
+    }
+    .page-hero .back-link:hover { color: var(--white); }
+    .page-hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .page-hero h1 em { font-style: italic; font-weight: 400; }
+    .page-hero p {
+      color: rgba(255,255,255,.82);
+      font-size: 1.05rem;
+      max-width: 540px;
+      margin: 0 auto;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ── Exercices page ── */
+    .exercices-section {
+      padding: 80px 0 100px;
+    }
+
+    .exercices-intro {
+      max-width: 680px;
+      margin: 0 auto 64px;
+      text-align: center;
+    }
+    .exercices-intro p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .exercices-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    /* Carte exercice fermée */
+    .ex-card {
+      background: var(--white);
+      border: 1.5px solid var(--beige-dark);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: box-shadow var(--transition), border-color var(--transition);
+      cursor: pointer;
+    }
+    .ex-card:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: var(--green-mid);
+    }
+    .ex-card.open {
+      border-color: var(--green);
+      box-shadow: 0 8px 32px rgba(107,158,122,.18);
+    }
+
+    .ex-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 28px;
+      user-select: none;
+    }
+
+    .ex-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--green-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background var(--transition);
+    }
+    .ex-card.open .ex-icon,
+    .ex-card:hover .ex-icon {
+      background: var(--green-mid);
+    }
+    .ex-icon svg { width: 32px; height: 32px; }
+
+    .ex-meta { flex: 1; }
+    .ex-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 4px;
+    }
+    .ex-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .ex-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .ex-tag {
+      font-size: .7rem;
+      font-weight: 500;
+      color: var(--green-dark);
+      background: var(--green-light);
+      padding: 3px 9px;
+      border-radius: 50px;
+    }
+
+    .ex-toggle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--green-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .ex-card.open .ex-toggle {
+      background: var(--green);
+      transform: rotate(45deg);
+    }
+    .ex-toggle svg { width: 16px; height: 16px; }
+    .ex-card.open .ex-toggle svg path { stroke: white; }
+
+    /* Contenu déplié */
+    .ex-body {
+      display: none;
+      padding: 0 28px 28px;
+      border-top: 1px solid var(--beige-dark);
+      animation: slideDown .25s ease;
+    }
+    .ex-card.open .ex-body { display: block; }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .ex-illustration {
+      background: var(--green-light);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+      margin: 20px 0 24px;
+    }
+    .ex-illustration svg {
+      width: 100%;
+      max-width: 300px;
+      height: 140px;
+    }
+
+    .ex-body h4 {
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin: 20px 0 8px;
+    }
+    .ex-body p {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+    .ex-steps {
+      counter-reset: step;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 8px 0;
+    }
+    .ex-step {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: .9rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .ex-step::before {
+      counter-increment: step;
+      content: counter(step);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--green);
+      color: white;
+      font-size: .72rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .ex-benefit {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--beige);
+      border-radius: var(--radius);
+      padding: 10px 14px;
+      font-size: .83rem;
+      color: var(--text-muted);
+      margin-top: 16px;
+    }
+    .ex-benefit svg { flex-shrink: 0; }
+
+    /* CTA bas de page */
+    .ex-cta {
+      background: linear-gradient(135deg, #3d6b52, #6b9e7a);
+      border-radius: var(--radius-lg);
+      padding: 56px 40px;
+      text-align: center;
+      color: var(--white);
+      margin-top: 64px;
+    }
+    .ex-cta h2 { font-size: 2rem; font-weight: 400; color: white; margin-bottom: 12px; }
+    .ex-cta p { color: rgba(255,255,255,.82); max-width: 440px; margin: 0 auto 28px; }
+    .ex-cta .btn-primary { background: white; color: var(--green-dark); font-weight: 600; }
+    .ex-cta .btn-primary:hover { background: var(--green-light); }
+
+    @media (max-width: 768px) {
+      .exercices-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="header scrolled" id="header">
+    <nav class="nav container">
+      <a href="index.html" class="nav-logo" style="color: var(--text)">Katelyne Vonck</a>
+      <button class="nav-burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#accueil" class="nav-link">Accueil</a></li>
+        <li><a href="index.html#a-propos" class="nav-link">À propos</a></li>
+        <li><a href="index.html#services" class="nav-link">Séances</a></li>
+        <li><a href="index.html#rdv" class="nav-link nav-cta">Prendre rendez-vous</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <div class="page-hero">
+      <div class="page-hero-content container">
+        <a href="index.html" class="back-link">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Retour au site
+        </a>
+        <h1>Exercices à faire<br /><em>à la maison</em></h1>
+        <p>Des exercices simples issus de la kinésiologie pour prolonger les effets de vos séances et retrouver de l'énergie au quotidien.</p>
+      </div>
+    </div>
+
+    <section class="exercices-section">
+      <div class="container">
+
+        <div class="exercices-intro reveal">
+          <p>Cliquez sur un exercice pour découvrir comment le réaliser. Pas besoin de matériel, quelques minutes suffisent. À faire le matin, en pause, ou quand vous en ressentez le besoin.</p>
+        </div>
+
+        <div class="exercices-grid">
+
+          <!-- EXERCICE 1 : Cross Crawl -->
+          <div class="ex-card reveal" id="ex1">
+            <div class="ex-header" onclick="toggleEx('ex1')">
+              <div class="ex-icon">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 10 L34 38" stroke="#6b9e7a" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M34 10 L14 38" stroke="#6b9e7a" stroke-width="3" stroke-linecap="round"/>
+                  <circle cx="14" cy="10" r="4" fill="#6b9e7a"/>
+                  <circle cx="34" cy="10" r="4" fill="#6b9e7a"/>
+                  <circle cx="14" cy="38" r="4" fill="#c8d9c9"/>
+                  <circle cx="34" cy="38" r="4" fill="#c8d9c9"/>
+                </svg>
+              </div>
+              <div class="ex-meta">
+                <p class="ex-num">Exercice 01</p>
+                <p class="ex-title">Le Cross Crawl</p>
+                <div class="ex-tags">
+                  <span class="ex-tag">Coordination</span>
+                  <span class="ex-tag">Concentration</span>
+                  <span class="ex-tag">2 min</span>
+                </div>
+              </div>
+              <div class="ex-toggle">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#6b9e7a" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+            </div>
+            <div class="ex-body">
+              <div class="ex-illustration">
+                <svg viewBox="0 0 300 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Personnage debout -->
+                  <circle cx="150" cy="22" r="16" fill="#6b9e7a" opacity=".7"/>
+                  <rect x="138" y="40" width="24" height="40" rx="10" fill="#6b9e7a" opacity=".7"/>
+                  <!-- Bras gauche levé vers genou droit -->
+                  <path d="M138 55 Q115 60 108 80" stroke="#3d7a52" stroke-width="5" stroke-linecap="round" fill="none"/>
+                  <!-- Bras droit vers le bas -->
+                  <path d="M162 55 Q185 60 190 75" stroke="#c8d9c9" stroke-width="5" stroke-linecap="round" fill="none"/>
+                  <!-- Jambe gauche basse -->
+                  <path d="M145 80 Q140 100 135 120" stroke="#c8d9c9" stroke-width="5" stroke-linecap="round" fill="none"/>
+                  <!-- Jambe droite / genou levé -->
+                  <path d="M155 80 Q160 95 165 85 Q168 78 175 80" stroke="#3d7a52" stroke-width="5" stroke-linecap="round" fill="none"/>
+                  <!-- Flèches croisement -->
+                  <path d="M108 80 Q130 85 175 80" stroke="#6b9e7a" stroke-width="1.5" stroke-dasharray="4 3" opacity=".5"/>
+                  <text x="150" y="128" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#6b9e7a">Main gauche ↔ Genou droit</text>
+                </svg>
+              </div>
+              <h4>Comment faire</h4>
+              <div class="ex-steps">
+                <div class="ex-step">Tenez-vous debout, les pieds légèrement écartés.</div>
+                <div class="ex-step">Levez le genou droit et touchez-le avec la main gauche.</div>
+                <div class="ex-step">Alternez : genou gauche + main droite, comme si vous marchiez sur place en exagérant le mouvement.</div>
+                <div class="ex-step">Faites 20 répétitions lentement, en respirant calmement.</div>
+              </div>
+              <h4>Pourquoi ça marche</h4>
+              <p>Le Cross Crawl active la communication entre les deux hémisphères du cerveau. Il améliore la coordination, la concentration et la clarté mentale.</p>
+              <div class="ex-benefit">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="#6b9e7a" stroke-width="1.5" fill="none"/></svg>
+                Idéal le matin au réveil ou avant un travail nécessitant de la concentration.
+              </div>
+            </div>
+          </div>
+
+          <!-- EXERCICE 2 : Boutons du cerveau -->
+          <div class="ex-card reveal" id="ex2">
+            <div class="ex-header" onclick="toggleEx('ex2')">
+              <div class="ex-icon">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="24" cy="20" r="12" stroke="#6b9e7a" stroke-width="2.5" fill="none"/>
+                  <circle cx="18" cy="32" r="4" fill="#6b9e7a"/>
+                  <circle cx="30" cy="32" r="4" fill="#6b9e7a"/>
+                  <path d="M18 36 L18 42 M30 36 L30 42" stroke="#6b9e7a" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="ex-meta">
+                <p class="ex-num">Exercice 02</p>
+                <p class="ex-title">Les Boutons du Cerveau</p>
+                <div class="ex-tags">
+                  <span class="ex-tag">Énergie</span>
+                  <span class="ex-tag">Vision</span>
+                  <span class="ex-tag">1 min</span>
+                </div>
+              </div>
+              <div class="ex-toggle">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#6b9e7a" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+            </div>
+            <div class="ex-body">
+              <div class="ex-illustration">
+                <svg viewBox="0 0 300 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Torse / tête -->
+                  <circle cx="150" cy="28" r="22" fill="#6b9e7a" opacity=".65"/>
+                  <rect x="132" y="52" width="36" height="50" rx="14" fill="#6b9e7a" opacity=".65"/>
+                  <!-- Main gauche sur nombril -->
+                  <ellipse cx="118" cy="90" rx="16" ry="10" fill="#3d7a52" opacity=".7"/>
+                  <!-- Doigts droits sur clavicules -->
+                  <circle cx="140" cy="56" r="6" fill="#3d7a52" opacity=".8"/>
+                  <circle cx="160" cy="56" r="6" fill="#3d7a52" opacity=".8"/>
+                  <!-- Points lumineux -->
+                  <circle cx="140" cy="56" r="3" fill="white" opacity=".6"/>
+                  <circle cx="160" cy="56" r="3" fill="white" opacity=".6"/>
+                  <!-- Lignes indications -->
+                  <path d="M140 56 Q130 44 122 42" stroke="#6b9e7a" stroke-width="1" stroke-dasharray="3 3" opacity=".5"/>
+                  <path d="M160 56 Q170 44 178 42" stroke="#6b9e7a" stroke-width="1" stroke-dasharray="3 3" opacity=".5"/>
+                  <text x="105" y="40" font-family="Inter,sans-serif" font-size="9" fill="#3d7a52">Creux</text>
+                  <text x="170" y="40" font-family="Inter,sans-serif" font-size="9" fill="#3d7a52">clavicules</text>
+                  <text x="62" y="93" font-family="Inter,sans-serif" font-size="9" fill="#3d7a52">Nombril</text>
+                  <text x="150" y="125" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#6b9e7a">Massez 20–30 secondes</text>
+                </svg>
+              </div>
+              <h4>Comment faire</h4>
+              <div class="ex-steps">
+                <div class="ex-step">Posez une main à plat sur votre nombril.</div>
+                <div class="ex-step">Avec l'autre main, massez fermement les deux creux situés juste sous les clavicules (à gauche et à droite du sternum).</div>
+                <div class="ex-step">Faites de petits cercles pendant 20 à 30 secondes en respirant profondément.</div>
+                <div class="ex-step">Changez de main et recommencez.</div>
+              </div>
+              <h4>Pourquoi ça marche</h4>
+              <p>Ces points stimulent l'afflux sanguin vers le cerveau et activent le système nerveux. Cet exercice est particulièrement efficace contre la fatigue oculaire et les baisses d'énergie.</p>
+              <div class="ex-benefit">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="#6b9e7a" stroke-width="1.5" fill="none"/></svg>
+                Parfait en milieu d'après-midi ou lors d'un coup de fatigue devant l'écran.
+              </div>
+            </div>
+          </div>
+
+          <!-- EXERCICE 3 : ESR (points frontaux) -->
+          <div class="ex-card reveal" id="ex3">
+            <div class="ex-header" onclick="toggleEx('ex3')">
+              <div class="ex-icon">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 28 Q12 14 24 12 Q36 14 36 28 Q36 38 24 40 Q12 38 12 28Z" stroke="#6b9e7a" stroke-width="2" fill="none"/>
+                  <circle cx="18" cy="18" r="3.5" fill="#6b9e7a"/>
+                  <circle cx="30" cy="18" r="3.5" fill="#6b9e7a"/>
+                  <path d="M16 26 Q24 32 32 26" stroke="#6b9e7a" stroke-width="2" stroke-linecap="round" fill="none"/>
+                </svg>
+              </div>
+              <div class="ex-meta">
+                <p class="ex-num">Exercice 03</p>
+                <p class="ex-title">L'ESR — Libérer le stress</p>
+                <div class="ex-tags">
+                  <span class="ex-tag">Stress</span>
+                  <span class="ex-tag">Émotions</span>
+                  <span class="ex-tag">3–5 min</span>
+                </div>
+              </div>
+              <div class="ex-toggle">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#6b9e7a" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+            </div>
+            <div class="ex-body">
+              <div class="ex-illustration">
+                <svg viewBox="0 0 300 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Tête de face -->
+                  <ellipse cx="150" cy="60" rx="45" ry="52" fill="#6b9e7a" opacity=".55"/>
+                  <!-- Yeux fermés -->
+                  <path d="M132 52 Q138 48 144 52" stroke="#3d7a52" stroke-width="2" fill="none" stroke-linecap="round"/>
+                  <path d="M156 52 Q162 48 168 52" stroke="#3d7a52" stroke-width="2" fill="none" stroke-linecap="round"/>
+                  <!-- Sourire doux -->
+                  <path d="M138 70 Q150 78 162 70" stroke="#3d7a52" stroke-width="2" fill="none" stroke-linecap="round"/>
+                  <!-- Mains sur le front -->
+                  <ellipse cx="122" cy="38" rx="16" ry="9" fill="#3d7a52" opacity=".75" transform="rotate(-15 122 38)"/>
+                  <ellipse cx="178" cy="38" rx="16" ry="9" fill="#3d7a52" opacity=".75" transform="rotate(15 178 38)"/>
+                  <!-- Points frontaux -->
+                  <circle cx="136" cy="40" r="5" fill="white" opacity=".5"/>
+                  <circle cx="164" cy="40" r="5" fill="white" opacity=".5"/>
+                  <!-- Ondes de calme -->
+                  <path d="M100 100 Q150 90 200 100" stroke="#a8cdb0" stroke-width="1.5" stroke-dasharray="4 4" opacity=".6"/>
+                  <path d="M110 112 Q150 102 190 112" stroke="#a8cdb0" stroke-width="1" stroke-dasharray="3 5" opacity=".4"/>
+                  <text x="150" y="128" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#6b9e7a">Tenez doucement les points frontaux</text>
+                </svg>
+              </div>
+              <h4>Comment faire</h4>
+              <div class="ex-steps">
+                <div class="ex-step">Installez-vous confortablement, assis ou allongé.</div>
+                <div class="ex-step">Posez délicatement le bout des doigts des deux mains sur votre front — juste au-dessus des sourcils, au niveau des bosses frontales.</div>
+                <div class="ex-step">Pensez à la situation stressante ou à l'émotion que vous souhaitez relâcher.</div>
+                <div class="ex-step">Maintenez la position 2 à 5 minutes en respirant lentement. Vous sentirez peut-être une pulsation sous les doigts — c'est normal.</div>
+              </div>
+              <h4>Pourquoi ça marche</h4>
+              <p>L'Emotional Stress Release (ESR) est une technique issue du Touch for Health. En maintenant ces points, vous activez la circulation sanguine dans les lobes frontaux, ce qui permet au cerveau de retraiter une situation stressante de façon plus sereine.</p>
+              <div class="ex-benefit">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="#6b9e7a" stroke-width="1.5" fill="none"/></svg>
+                À faire avant un événement anxiogène, après une dispute ou quand les pensées s'emballent.
+              </div>
+            </div>
+          </div>
+
+          <!-- EXERCICE 4 : Hydratation / Boire de l'eau -->
+          <div class="ex-card reveal" id="ex4">
+            <div class="ex-header" onclick="toggleEx('ex4')">
+              <div class="ex-icon">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M24 8 Q32 20 32 30 C32 38 28 42 24 42 C20 42 16 38 16 30 Q16 20 24 8Z" stroke="#6b9e7a" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+                  <path d="M18 32 Q22 36 30 32" stroke="#6b9e7a" stroke-width="2" stroke-linecap="round" fill="none"/>
+                </svg>
+              </div>
+              <div class="ex-meta">
+                <p class="ex-num">Exercice 04</p>
+                <p class="ex-title">Le Crochet d'Eau</p>
+                <div class="ex-tags">
+                  <span class="ex-tag">Équilibre</span>
+                  <span class="ex-tag">Ancrage</span>
+                  <span class="ex-tag">2 min</span>
+                </div>
+              </div>
+              <div class="ex-toggle">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#6b9e7a" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+            </div>
+            <div class="ex-body">
+              <div class="ex-illustration">
+                <svg viewBox="0 0 300 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Silhouette assise -->
+                  <circle cx="150" cy="28" r="20" fill="#6b9e7a" opacity=".65"/>
+                  <rect x="132" y="50" width="36" height="38" rx="12" fill="#6b9e7a" opacity=".65"/>
+                  <!-- Jambe gauche croisée sur droite -->
+                  <path d="M132 88 Q115 95 105 110" stroke="#6b9e7a" stroke-width="8" stroke-linecap="round" opacity=".7"/>
+                  <path d="M168 88 Q185 95 195 110" stroke="#6b9e7a" stroke-width="8" stroke-linecap="round" opacity=".7"/>
+                  <!-- Croix de croisement chevilles -->
+                  <ellipse cx="150" cy="112" rx="20" ry="8" fill="#c8d9c9" opacity=".8"/>
+                  <text x="150" y="115" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#3d7a52">chevilles croisées</text>
+                  <!-- Mains croisées sur poitrine -->
+                  <path d="M132 62 Q122 58 118 64 Q122 70 132 68" fill="#3d7a52" opacity=".7"/>
+                  <path d="M168 62 Q178 58 182 64 Q178 70 168 68" fill="#3d7a52" opacity=".7"/>
+                  <!-- Bouts des doigts qui se touchent -->
+                  <circle cx="150" cy="62" r="6" fill="#3d7a52" opacity=".5"/>
+                  <text x="150" y="128" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#6b9e7a">Poignets croisés, doigts entrelacés</text>
+                </svg>
+              </div>
+              <h4>Comment faire</h4>
+              <div class="ex-steps">
+                <div class="ex-step">Asseyez-vous confortablement et croisez les chevilles.</div>
+                <div class="ex-step">Tendez les bras devant vous, poignets croisés, paumes face à face. Entrelacez les doigts.</div>
+                <div class="ex-step">Ramenez doucement les mains contre votre poitrine.</div>
+                <div class="ex-step">Fermez les yeux, posez la langue sur le palais et respirez profondément pendant 1 à 2 minutes.</div>
+              </div>
+              <h4>Pourquoi ça marche</h4>
+              <p>Le Crochet d'Eau est l'un des exercices les plus puissants de Brain Gym®. Il harmonise les deux hémisphères cérébraux, calme rapidement les émotions débordantes et rétablit un sentiment de sécurité intérieure.</p>
+              <div class="ex-benefit">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="#6b9e7a" stroke-width="1.5" fill="none"/></svg>
+                À faire lors de crises d'angoisse, avant de dormir, ou après une forte émotion.
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /grid -->
+
+        <!-- CTA -->
+        <div class="ex-cta reveal">
+          <h2>Envie d'aller plus loin ?</h2>
+          <p>Ces exercices sont un bon départ — une séance vous permettra d'aller beaucoup plus loin et à votre rythme.</p>
+          <a href="index.html#rdv" class="btn btn-primary">Prendre rendez-vous</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <p class="footer-logo">Katelyne Vonck</p>
+        <p class="footer-tagline">Kinésiologue certifiée</p>
+        <p>Accompagnement holistique pour retrouver l'équilibre et le bien-être au quotidien.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/katelynevonckkinesio/?locale=fr_FR" target="_blank" rel="noopener" aria-label="Facebook" class="social-link">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="index.html#a-propos">À propos</a></li>
+          <li><a href="index.html#services">Séances</a></li>
+          <li><a href="index.html#rdv">Rendez-vous</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <ul>
+          <li>94 rue Monin<br/>6061 Montignies-sur-Sambre, Belgique</li>
+          <li><a href="tel:+32478613975">+32 478 61 39 75</a></li>
+          <li><a href="mailto:kate.vonck@gmail.be">kate.vonck@gmail.be</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>© 2026 Katelyne Vonck — Kinésiologue. Tous droits réservés.</p>
+      <p><a href="#">Mentions légales</a> · <a href="#">Politique de confidentialité</a></p>
+    </div>
+  </footer>
+
+  <a href="index.html#rdv" class="fab" aria-label="Prendre rendez-vous">
+    <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><rect x="3" y="4" width="18" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+  </a>
+
+  <script>
+    function toggleEx(id) {
+      const card = document.getElementById(id);
+      const isOpen = card.classList.contains('open');
+      // Ferme toutes les cartes
+      document.querySelectorAll('.ex-card').forEach(c => c.classList.remove('open'));
+      // Ouvre celle-ci si elle était fermée
+      if (!isOpen) card.classList.add('open');
+    }
+
+    // Nav burger
+    const burger = document.getElementById('burger');
+    const navLinks = document.getElementById('navLinks');
+    burger.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    navLinks.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      document.body.style.overflow = '';
+    }));
+
+    // Reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    revealEls.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
