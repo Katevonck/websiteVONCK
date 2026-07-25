@@ -114,3 +114,41 @@ form.addEventListener('submit', (e) => {
 form.querySelectorAll('input, select, textarea').forEach(field => {
   field.addEventListener('input', () => field.classList.remove('error'));
 });
+
+// ── Carrousel d'avis ─────────────────────────────────────────
+const reviewsTrack = document.getElementById('reviewsTrack');
+const reviewsDotsWrap = document.getElementById('reviewsDots');
+
+if (reviewsTrack && reviewsDotsWrap) {
+  const slides = reviewsTrack.querySelectorAll('.review-slide');
+  let current = 0;
+  let autoTimer;
+
+  // Création des points de navigation
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'reviews-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', `Avis ${i + 1}`);
+    dot.addEventListener('click', () => { goTo(i); resetAuto(); });
+    reviewsDotsWrap.appendChild(dot);
+  });
+  const dots = reviewsDotsWrap.querySelectorAll('.reviews-dot');
+
+  function goTo(index) {
+    current = (index + slides.length) % slides.length;
+    reviewsTrack.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  function next() { goTo(current + 1); }
+
+  function startAuto() { autoTimer = setInterval(next, 6000); }
+  function resetAuto() { clearInterval(autoTimer); startAuto(); }
+
+  startAuto();
+
+  // Pause au survol
+  const carousel = document.getElementById('reviewsCarousel');
+  carousel.addEventListener('mouseenter', () => clearInterval(autoTimer));
+  carousel.addEventListener('mouseleave', startAuto);
+}
