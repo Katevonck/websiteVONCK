@@ -1429,28 +1429,33 @@ ul { list-style: none; }
 
 /* 5 soins chamaniques */
 .shamanic-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
 }
 
 .shamanic-card {
   background: rgba(255,255,255,.05);
   border: 1px solid rgba(255,255,255,.08);
   border-radius: var(--radius-lg);
-  padding: 28px 32px;
+  padding: 28px 30px;
   display: flex;
-  gap: 24px;
+  gap: 22px;
   align-items: flex-start;
   transition: background var(--transition), transform var(--transition);
 }
 .shamanic-card:hover {
   background: rgba(107,158,122,.15);
-  transform: translateX(4px);
+  transform: translateY(-4px);
 }
 .shamanic-card--heart {
+  grid-column: 1 / -1;
   border-color: rgba(107,158,122,.3);
   background: rgba(107,158,122,.1);
+  justify-content: center;
+  max-width: 640px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .shamanic-animal {
@@ -1462,20 +1467,27 @@ ul { list-style: none; }
   padding-top: 4px;
 }
 
-/* Placeholder image ronde : reçoit aigle.jpg / coyote.jpg / ours.jpg / bison.jpg.
+/* Placeholder image ronde : reçoit aigle.jpg / coyote.jpg / ours.jpg / bison.jpg / coeur.jpg.
    Tant que la photo n'existe pas, l'emoji reste visible en repli. */
 .shamanic-animal--img {
-  width: 72px;
-  height: 72px;
+  width: 88px;
+  height: 88px;
   padding-top: 0;
   border-radius: 50%;
   overflow: hidden;
   position: relative;
   background: rgba(255,255,255,.10);
-  border: 2px solid rgba(255,255,255,.25);
+  border: 2px solid rgba(139,184,160,.45);
+  box-shadow: 0 6px 20px rgba(0,0,0,.25);
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+.shamanic-card:hover .shamanic-animal--img {
+  transform: scale(1.06);
+  border-color: rgba(139,184,160,.8);
+  box-shadow: 0 8px 26px rgba(0,0,0,.35);
 }
 .shamanic-animal--img img {
   position: absolute;
@@ -1483,6 +1495,10 @@ ul { list-style: none; }
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform .5s cubic-bezier(.4,0,.2,1);
+}
+.shamanic-card:hover .shamanic-animal--img img {
+  transform: scale(1.1);
 }
 .shamanic-animal-emoji {
   font-size: 2rem;
@@ -1519,11 +1535,14 @@ ul { list-style: none; }
 @media (max-width: 900px) {
   .tambour-intro { grid-template-columns: 1fr; }
   .tambour-grid { grid-template-columns: 1fr; }
+  .shamanic-grid { grid-template-columns: 1fr; }
   .shamanic-card { flex-direction: row; }
+  .shamanic-card--heart { grid-column: auto; max-width: none; }
 }
 @media (max-width: 600px) {
   .tambour-intro { padding: 24px 20px; }
-  .shamanic-card { padding: 20px; }
+  .shamanic-card { padding: 20px; gap: 18px; }
+  .shamanic-animal--img { width: 72px; height: 72px; }
 }
 
 
