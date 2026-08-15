@@ -5,7 +5,6 @@ const SITE_NAV = [
   { href: 'index.html', label: 'Accueil' },
   { href: 'kinesiologie.html', label: 'Kinésiologie' },
   { href: 'tambour.html', label: 'Soins au tambour' },
-  { href: 'a-propos.html', label: 'À propos' },
 ];
 
 function currentPage() {
