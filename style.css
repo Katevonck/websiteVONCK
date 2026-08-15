@@ -1365,6 +1365,34 @@ ul { list-style: none; }
   margin-top: 8px;
 }
 
+.tambour-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 56px;
+}
+.tambour-gallery img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+.tambour-gallery-feature {
+  grid-column: 1 / -1;
+  aspect-ratio: 3 / 2;
+  object-position: center 62%;
+}
+.tambour-gallery img:not(.tambour-gallery-feature) {
+  aspect-ratio: 1 / 1;
+}
+
+@media (max-width: 700px) {
+  .tambour-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
 .tambour-soins-section {
   padding: 100px 0;
   background: var(--beige);
