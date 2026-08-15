@@ -6,7 +6,6 @@ const SITE_NAV = [
   { href: 'kinesiologie.html', label: 'Kinésiologie' },
   { href: 'tambour.html', label: 'Soins au tambour' },
   { href: 'a-propos.html', label: 'À propos' },
-  { href: 'contact.html', label: 'Contact' },
 ];
 
 function currentPage() {
@@ -72,7 +71,7 @@ function renderFooter() {
         <h4>Navigation</h4>
         <ul>
           ${navLines}
-          <li><a href="contact.html#rdv">Rendez-vous</a></li>
+          <li><a href="contact.html#rdv">Prendre rendez-vous</a></li>
         </ul>
       </div>
       <div class="footer-contact">
