@@ -45,22 +45,6 @@ const io = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// ── Active nav link on scroll ────────────────────────────────
-const sections = document.querySelectorAll('section[id], footer[id]');
-const navItems = document.querySelectorAll('.nav-link');
-
-const sectionObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navItems.forEach(a => a.classList.remove('active'));
-      const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
-      if (active) active.classList.add('active');
-    }
-  });
-}, { threshold: 0.3 });
-
-sections.forEach(s => sectionObserver.observe(s));
-
 // ── Set min date for date picker ─────────────────────────────
 const dateInput = document.getElementById('date');
 if (dateInput) {
@@ -74,46 +58,48 @@ const form = document.getElementById('bookingForm');
 const formSuccess = document.getElementById('formSuccess');
 const successName = document.getElementById('successName');
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
+if (form) {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-  let valid = true;
-  const required = form.querySelectorAll('[required]');
+    let valid = true;
+    const required = form.querySelectorAll('[required]');
 
-  required.forEach(field => {
-    field.classList.remove('error');
-    if (!field.value.trim()) {
-      field.classList.add('error');
-      valid = false;
+    required.forEach(field => {
+      field.classList.remove('error');
+      if (!field.value.trim()) {
+        field.classList.add('error');
+        valid = false;
+      }
+    });
+
+    if (!valid) {
+      const first = form.querySelector('.error');
+      first?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      first?.focus();
+      return;
     }
+
+    const prenom = document.getElementById('prenom').value.trim();
+
+    // Simulate sending (replace with real fetch/email service)
+    const btn = form.querySelector('[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours…';
+
+    setTimeout(() => {
+      form.hidden = true;
+      successName.textContent = prenom;
+      formSuccess.classList.add('visible');
+      formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 900);
   });
 
-  if (!valid) {
-    const first = form.querySelector('.error');
-    first?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    first?.focus();
-    return;
-  }
-
-  const prenom = document.getElementById('prenom').value.trim();
-
-  // Simulate sending (replace with real fetch/email service)
-  const btn = form.querySelector('[type="submit"]');
-  btn.disabled = true;
-  btn.textContent = 'Envoi en cours…';
-
-  setTimeout(() => {
-    form.hidden = true;
-    successName.textContent = prenom;
-    formSuccess.classList.add('visible');
-    formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, 900);
-});
-
-// ── Remove error on input ────────────────────────────────────
-form.querySelectorAll('input, select, textarea').forEach(field => {
-  field.addEventListener('input', () => field.classList.remove('error'));
-});
+  // ── Remove error on input ──────────────────────────────────
+  form.querySelectorAll('input, select, textarea').forEach(field => {
+    field.addEventListener('input', () => field.classList.remove('error'));
+  });
+}
 
 // ── Carrousel d'avis ─────────────────────────────────────────
 const reviewsTrack = document.getElementById('reviewsTrack');

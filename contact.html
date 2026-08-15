@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact &amp; Rendez-vous — Katelyne Vonck</title>
+  <meta name="description" content="Prenez rendez-vous avec Katelyne Vonck, kinésiologue et praticienne en soins vibratoires au tambour, à Montignies-sur-Sambre." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="header" id="header"></header>
+
+  <main>
+
+    <!-- HERO -->
+    <div class="page-hero">
+      <div class="page-hero-content container">
+        <a href="index.html" class="back-link">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Retour au site
+        </a>
+        <h1>Contact &amp; <em>rendez-vous</em></h1>
+        <p>Une question, une envie de séance de kinésiologie ou de soins au tambour ? Écrivez-moi ou réservez directement votre créneau.</p>
+      </div>
+    </div>
+
+    <!-- RENDEZ-VOUS -->
+    <section class="booking" id="rdv" style="padding-top: 80px;">
+      <div class="container booking-grid">
+        <div class="booking-info reveal">
+          <span class="section-tag">Prendre rendez-vous</span>
+          <h2 class="section-title">Réservez votre<br />séance</h2>
+          <p>Faites le premier pas. Remplissez le formulaire et je vous recontacte sous 24h pour confirmer votre rendez-vous.</p>
+          <div class="booking-details">
+            <div class="booking-detail">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#6b9e7a"/></svg>
+              <div>
+                <strong>Cabinet</strong>
+                <span>94 rue Monin, 6061 Montignies-sur-Sambre<br/>Belgique</span>
+              </div>
+            </div>
+            <div class="booking-detail">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z" fill="#6b9e7a"/></svg>
+              <div>
+                <strong>Horaires</strong>
+                <span>Lun – Ven : 16h30 – 20h00<br/>Autres créneaux possibles sur demande</span>
+              </div>
+            </div>
+            <div class="booking-detail">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="#6b9e7a"/></svg>
+              <div>
+                <strong>Téléphone</strong>
+                <span><a href="tel:+32478613975">+32 478 61 39 75</a><br/>Appel ou message</span>
+              </div>
+            </div>
+            <div class="booking-detail">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="#6b9e7a"/></svg>
+              <div>
+                <strong>Email</strong>
+                <span><a href="mailto:kate.vonck@gmail.com">kate.vonck@gmail.com</a></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="booking-form-wrap reveal">
+          <form class="booking-form" id="bookingForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="prenom">Prénom *</label>
+                <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required />
+              </div>
+              <div class="form-group">
+                <label for="nom">Nom *</label>
+                <input type="text" id="nom" name="nom" placeholder="Votre nom" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="votre@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="tel">Téléphone</label>
+              <input type="tel" id="tel" name="tel" placeholder="+32 4XX XX XX XX" />
+            </div>
+            <div class="form-group">
+              <label for="service">Type de soin *</label>
+              <select id="service" name="service" required>
+                <option value="" disabled selected>Choisissez un soin</option>
+                <optgroup label="Kinésiologie">
+                  <option value="kinesio-bebe">Kinésiologie Bébé (transfert)</option>
+                  <option value="kinesio-enfant">Kinésiologie Enfant / Ado</option>
+                  <option value="kinesio-adulte">Kinésiologie Adulte</option>
+                </optgroup>
+                <optgroup label="Soins vibratoires au tambour">
+                  <option value="tambour-chakras">Équilibration des 7 chakras</option>
+                  <option value="tambour-polarites">Fusion des polarités</option>
+                  <option value="tambour-renaissance">Soin de renaissance</option>
+                  <option value="tambour-aigle">Soin de l'Aigle</option>
+                  <option value="tambour-coyote">Soin du Coyote</option>
+                  <option value="tambour-ours">Soin de l'Ours</option>
+                  <option value="tambour-bison">Soin du Bison</option>
+                  <option value="tambour-coeur">Soin du Cœur</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="date">Date souhaitée *</label>
+                <input type="date" id="date" name="date" required />
+              </div>
+              <div class="form-group">
+                <label for="heure">Heure préférée</label>
+                <select id="heure" name="heure">
+                  <option value="" disabled selected>Heure</option>
+                  <option>16:30</option>
+                  <option>17:00</option>
+                  <option>17:30</option>
+                  <option>18:00</option>
+                  <option>18:30</option>
+                  <option>19:00</option>
+                  <option>19:30</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Votre demande (facultatif)</label>
+              <textarea id="message" name="message" rows="3" placeholder="Décrivez brièvement ce qui vous amène…"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              Envoyer ma demande
+              <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" fill="currentColor"/></svg>
+            </button>
+            <p class="form-note">Vous recevrez une confirmation sous 24h. Aucun paiement à l'avance requis.</p>
+          </form>
+          <div class="form-success" id="formSuccess" hidden>
+            <svg viewBox="0 0 24 24" width="48" height="48" fill="none"><circle cx="12" cy="12" r="10" fill="#eaf3eb"/><path d="M8 12l3 3 5-5" stroke="#6b9e7a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>Demande envoyée !</h3>
+            <p>Merci <span id="successName"></span>. Je vous recontacte très vite pour confirmer votre rendez-vous.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" id="site-footer"></footer>
+  <div id="site-fab"></div>
+
+  <script src="partials.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

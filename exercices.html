@@ -10,46 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    .page-hero {
-      background: linear-gradient(135deg, #3d6b52 0%, #5b8a6e 40%, #7aab8a 100%);
-      padding: 140px 0 80px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .page-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(255,255,255,.06) 0%, transparent 60%);
-    }
-    .page-hero-content { position: relative; z-index: 1; }
-    .page-hero .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: rgba(255,255,255,.75);
-      font-size: .85rem;
-      margin-bottom: 24px;
-      transition: color var(--transition);
-    }
-    .page-hero .back-link:hover { color: var(--white); }
-    .page-hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 300;
-      color: var(--white);
-      margin-bottom: 16px;
-    }
-    .page-hero h1 em { font-style: italic; font-weight: 400; }
-    .page-hero p {
-      color: rgba(255,255,255,.82);
-      font-size: 1.05rem;
-      max-width: 540px;
-      margin: 0 auto;
-      font-weight: 300;
-      line-height: 1.7;
-    }
-
     /* ── Exercices page ── */
     .exercices-section {
       padding: 80px 0 100px;
@@ -271,22 +231,7 @@
 <body>
 
   <!-- NAV -->
-  <header class="header scrolled" id="header">
-    <nav class="nav container">
-      <a href="index.html" class="nav-logo" style="color: var(--text)">Katelyne Vonck</a>
-      <button class="nav-burger" id="burger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html#kinesio" class="nav-link">Kinésiologie</a></li>
-        <li><a href="index.html#tambour" class="nav-link">Soins au tambour</a></li>
-        <li><a href="index.html#jmv" class="nav-link">JMV</a></li>
-        <li><a href="index.html#a-propos" class="nav-link">À propos</a></li>
-        <li><a href="index.html#rdv" class="nav-link nav-cta">Prendre rendez-vous</a></li>
-        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  <header class="header" id="header"></header>
 
   <main>
 
@@ -561,7 +506,7 @@
         <div class="ex-cta reveal">
           <h2>Envie d'aller plus loin ?</h2>
           <p>Ces exercices sont un bon départ — une séance vous permettra d'aller beaucoup plus loin et à votre rythme.</p>
-          <a href="index.html#rdv" class="btn btn-primary">Prendre rendez-vous</a>
+          <a href="contact.html#rdv" class="btn btn-primary">Prendre rendez-vous</a>
         </div>
 
       </div>
@@ -569,47 +514,11 @@
 
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer" id="contact">
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <p class="footer-logo">Katelyne Vonck</p>
-        <p class="footer-tagline">Kinésiologue certifiée</p>
-        <p>Accompagnement holistique pour retrouver l'équilibre et le bien-être au quotidien.</p>
-        <div class="footer-social">
-          <a href="https://www.facebook.com/katelynevonckkinesio/?locale=fr_FR" target="_blank" rel="noopener" aria-label="Facebook" class="social-link">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="footer-nav">
-        <h4>Navigation</h4>
-        <ul>
-          <li><a href="index.html">Accueil</a></li>
-          <li><a href="index.html#a-propos">À propos</a></li>
-          <li><a href="index.html#services">Séances</a></li>
-          <li><a href="index.html#rdv">Rendez-vous</a></li>
-        </ul>
-      </div>
-      <div class="footer-contact">
-        <h4>Contact</h4>
-        <ul>
-          <li>94 rue Monin<br/>6061 Montignies-sur-Sambre, Belgique</li>
-          <li><a href="tel:+32478613975">+32 478 61 39 75</a></li>
-          <li><a href="mailto:kate.vonck@gmail.be">kate.vonck@gmail.be</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom container">
-      <p>© 2026 Katelyne Vonck — Kinésiologue. Tous droits réservés.</p>
-      <p><a href="#">Mentions légales</a> · <a href="#">Politique de confidentialité</a></p>
-    </div>
-  </footer>
+  <footer class="footer" id="site-footer"></footer>
+  <div id="site-fab"></div>
 
-  <a href="index.html#rdv" class="fab" aria-label="Prendre rendez-vous">
-    <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><rect x="3" y="4" width="18" height="18" rx="2" stroke="white" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
-  </a>
-
+  <script src="partials.js"></script>
+  <script src="script.js"></script>
   <script>
     function toggleEx(id) {
       const card = document.getElementById(id);
@@ -619,30 +528,6 @@
       // Ouvre celle-ci si elle était fermée
       if (!isOpen) card.classList.add('open');
     }
-
-    // Nav burger
-    const burger = document.getElementById('burger');
-    const navLinks = document.getElementById('navLinks');
-    burger.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      document.body.style.overflow = open ? 'hidden' : '';
-    });
-    navLinks.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      document.body.style.overflow = '';
-    }));
-
-    // Reveal
-    const revealEls = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e, i) => {
-        if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('visible'), i * 80);
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.08 });
-    revealEls.forEach(el => io.observe(el));
   </script>
 </body>
 </html>
