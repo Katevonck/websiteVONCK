@@ -1315,32 +1315,26 @@ ul { list-style: none; }
 
 
 /* ─── Tambour ───────────────────────────────────────────────── */
-.tambour {
+.tambour-intro-section {
   padding: 100px 0;
-  background: linear-gradient(160deg, #1e2d24 0%, #2a4035 50%, #1e2d24 100%);
-  color: rgba(255,255,255,.85);
+  background: var(--white);
 }
-
-.tambour .section-tag { color: #8bb8a0; }
-.tambour .section-title { color: var(--white); }
-.tambour .section-desc { color: rgba(255,255,255,.65); }
 
 .tambour-intro {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: 48px;
   align-items: start;
-  margin-bottom: 72px;
-  background: rgba(255,255,255,.05);
+  background: var(--green-light);
   border-radius: var(--radius-lg);
   padding: 40px;
-  border: 1px solid rgba(255,255,255,.08);
+  border: 1px solid var(--green-mid);
 }
 
 .tambour-intro-text p {
   font-size: 1rem;
   line-height: 1.75;
-  color: rgba(255,255,255,.8);
+  color: var(--text-muted);
   margin-bottom: 14px;
 }
 
@@ -1351,12 +1345,12 @@ ul { list-style: none; }
 }
 
 .tambour-benefit {
-  background: rgba(107,158,122,.25);
-  border: 1px solid rgba(107,158,122,.3);
+  background: var(--white);
+  border: 1px solid var(--green-mid);
   border-radius: 50px;
   padding: 8px 16px;
   font-size: .85rem;
-  color: rgba(255,255,255,.9);
+  color: var(--green-dark);
   font-weight: 500;
 }
 
@@ -1364,28 +1358,21 @@ ul { list-style: none; }
   grid-column: 1 / -1;
   text-align: center;
   font-size: 1.05rem;
-  color: rgba(255,255,255,.65);
+  color: var(--green-dark);
   font-style: italic;
-  border-top: 1px solid rgba(255,255,255,.08);
+  border-top: 1px solid var(--green-mid);
   padding-top: 24px;
   margin-top: 8px;
 }
 
-.tambour-section {
-  margin-bottom: 64px;
+.tambour-soins-section {
+  padding: 100px 0;
+  background: var(--beige);
 }
 
-.tambour-subtitle {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: var(--white);
-  margin-bottom: 8px;
-}
-
-.tambour-section-desc {
-  font-size: .95rem;
-  color: rgba(255,255,255,.55);
-  margin-bottom: 32px;
+.tambour-chamanique-section {
+  padding: 100px 0;
+  background: var(--white);
 }
 
 .tambour-grid {
@@ -1395,15 +1382,15 @@ ul { list-style: none; }
 }
 
 .tambour-card {
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.1);
+  background: var(--white);
+  border: 1px solid var(--beige-dark);
   border-radius: var(--radius-lg);
   padding: 32px 28px;
   position: relative;
-  transition: background var(--transition), transform var(--transition);
+  transition: box-shadow var(--transition), transform var(--transition);
 }
 .tambour-card:hover {
-  background: rgba(107,158,122,.18);
+  box-shadow: var(--shadow);
   transform: translateY(-4px);
 }
 
@@ -1411,7 +1398,7 @@ ul { list-style: none; }
   font-family: 'Cormorant Garamond', serif;
   font-size: 2.5rem;
   font-weight: 300;
-  color: var(--green);
+  color: var(--green-mid);
   line-height: 1;
   margin-bottom: 12px;
 }
@@ -1419,12 +1406,12 @@ ul { list-style: none; }
 .tambour-card h4 {
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--white);
+  color: var(--text);
   margin-bottom: 12px;
 }
 .tambour-card p {
   font-size: .88rem;
-  color: rgba(255,255,255,.7);
+  color: var(--text-muted);
   line-height: 1.7;
 }
 
@@ -1436,23 +1423,23 @@ ul { list-style: none; }
 }
 
 .shamanic-card {
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.08);
+  background: var(--beige);
+  border: 1px solid var(--beige-dark);
   border-radius: var(--radius-lg);
   padding: 28px 30px;
   display: flex;
   gap: 22px;
   align-items: flex-start;
-  transition: background var(--transition), transform var(--transition);
+  transition: box-shadow var(--transition), transform var(--transition);
 }
 .shamanic-card:hover {
-  background: rgba(107,158,122,.15);
+  box-shadow: var(--shadow);
   transform: translateY(-4px);
 }
 .shamanic-card--heart {
   grid-column: 1 / -1;
-  border-color: rgba(107,158,122,.3);
-  background: rgba(107,158,122,.1);
+  border-color: var(--green-mid);
+  background: var(--green-light);
   justify-content: center;
   max-width: 640px;
   margin: 0 auto;
@@ -1477,9 +1464,9 @@ ul { list-style: none; }
   border-radius: 50%;
   overflow: hidden;
   position: relative;
-  background: rgba(255,255,255,.10);
-  border: 2px solid rgba(139,184,160,.45);
-  box-shadow: 0 6px 20px rgba(0,0,0,.25);
+  background: var(--green-light);
+  border: 2px solid var(--green-mid);
+  box-shadow: var(--shadow);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1487,8 +1474,8 @@ ul { list-style: none; }
 }
 .shamanic-card:hover .shamanic-animal--img {
   transform: scale(1.06);
-  border-color: rgba(139,184,160,.8);
-  box-shadow: 0 8px 26px rgba(0,0,0,.35);
+  border-color: var(--green);
+  box-shadow: var(--shadow-lg);
 }
 .shamanic-animal--img img {
   position: absolute;
@@ -1523,13 +1510,13 @@ ul { list-style: none; }
 .shamanic-content h4 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--white);
+  color: var(--text);
   margin-bottom: 10px;
 }
 
 .shamanic-content p {
   font-size: .88rem;
-  color: rgba(255,255,255,.7);
+  color: var(--text-muted);
   line-height: 1.7;
 }
 
